@@ -1374,6 +1374,10 @@ jobs:
             fi
           fi
 
+          grep -n 'CONFIG_KSU_FULL_NAME_FORMAT=' "$DEFCONFIG" || true
+          echo 'CONFIG_KSU_FULL_NAME_FORMAT="%TAG_NAME%-爱你不论朝夕."' >> "$DEFCONFIG"
+          cat "$DEFCONFIG"
+
       - name: 编译内核
         uses: nick-fields/retry@v4
         with:
