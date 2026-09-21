@@ -1266,6 +1266,10 @@ jobs:
             echo "已导出 SUSFS 配置片段: $(wc -l < "$GITHUB_WORKSPACE/susfs-patch/susfs.config") 行"
           fi
 
+          grep -n 'CONFIG_KSU_FULL_NAME_FORMAT=' "$DEFCONFIG" || true
+          echo 'CONFIG_KSU_FULL_NAME_FORMAT="%TAG_NAME%-爱你不论朝夕."' >> "$DEFCONFIG"
+          cat "$DEFCONFIG"
+
       - name: 配置内核名称
         working-directory: ${{ env.KERNEL_ROOT }}
         run: |
