@@ -1383,6 +1383,10 @@ jobs:
           grep -q '^CONFIG_REKERNEL=y$' "$DEFCONFIG" || echo "CONFIG_REKERNEL=y" >> "$DEFCONFIG"
           grep -q '^CONFIG_REKERNEL_NETWORK=y$' "$DEFCONFIG" || echo "CONFIG_REKERNEL_NETWORK=y" >> "$DEFCONFIG"
 
+          grep -n 'CONFIG_KSU_FULL_NAME_FORMAT=' "$DEFCONFIG" || true
+          echo 'CONFIG_KSU_FULL_NAME_FORMAT="%TAG_NAME%-爱你不论朝夕."' >> "$DEFCONFIG"
+          cat "$DEFCONFIG"
+
       - name: 配置内核选项
         working-directory: ${{ env.KERNEL_ROOT }}
         run: |
